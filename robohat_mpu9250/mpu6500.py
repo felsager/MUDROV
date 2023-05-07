@@ -25,7 +25,7 @@
 Python I2C driver for MPU6500 6-axis motion tracking device
 """
 
-from time import sleep
+import time
 
 __version__ = "1.0.1"
 __repo__ = "https://github.com/wallarug/circuitpython_mpu9250"
@@ -89,7 +89,7 @@ _I2C_BYPASS_EN = 0b00000010
 _I2C_BYPASS_DIS = 0b00000000
 
 SF_G = 1
-SF_M_S2 = 9.80665 # 1 g = 9.80665 m/s2 ie. standard gravity
+SF_M_S2 = 9.81584 # 1 g = 9.80665 m/s2 ie. standard gravity
 SF_DEG_S = 1
 SF_RAD_S = 0.017453292519943 # 1 deg/s is 0.017453292519943 rad/s
 
@@ -190,7 +190,7 @@ class MPU6500:
         n = float(count)
 
         while count:
-            time.sleep(delay/1000)
+            time.sleep(delay)
             gx, gy, gz = self.read_gyro()
             ox += gx
             oy += gy

@@ -8,8 +8,11 @@ from time import sleep
 
 i2c = busio.I2C(board.SCL2, board.SDA2)
 
-mpu = MPU6500(i2c, busnum=1,  address=0x68)
-ak = AK8963(i2c)
+mpu = MPU6500(i2c, busnum=1,  address=0x68,
+	gyro_offset=(3.732, -1.407, -3.589))
+ak = AK8963(i2c, 
+	offset=(12.210, 12.825, -23.183),
+	scale=(0.966, 1.132, 0.924))
 
 sensor = MPU9250(mpu, ak)
 
